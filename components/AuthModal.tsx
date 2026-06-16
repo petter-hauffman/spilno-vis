@@ -28,7 +28,20 @@ const AuthModal: React.FC<Props> = ({ onClose, onUser }) => {
       await signInWithMagicLink(email.trim(), name.trim());
       setMode('sent');
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : 'Error sending link');
+      let msg = 'Error sending link — please try again';
+      if (e instanceof Error) {
+        const raw = e.message ?? '';
+        if (raw.includes('rate') || raw.includes('limit')) {
+          msg = 'Too many emails sent — please wait ~1 hour and try again';
+        } else if (raw === '{}' || raw === '' || raw === '[]') {
+          msg = 'SMTP not configured correctly — check Supabase Auth → SMTP Settings';
+        } else if (raw.includes('invalid') || raw.includes('Invalid')) {
+          msg = 'Invalid email address';
+        } else {
+          msg = raw;
+        }
+      }
+      setError(msg);
     } finally {
       setLoading(false);
     }
