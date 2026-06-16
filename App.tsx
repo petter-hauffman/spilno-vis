@@ -1,6 +1,46 @@
 import React, {
-  useState, useCallback, createContext, useContext, useEffect,
+  useState, useCallback, createContext, useContext, useEffect, Component, ErrorInfo,
 } from 'react';
+
+// ─── Error Boundary ──────────────────────────────────────────────────────────
+class ErrorBoundary extends Component<
+  { children: React.ReactNode },
+  { error: Error | null }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { error: null };
+  }
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    console.error('[Spilno] Render error:', error, info);
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="fixed inset-0 bg-slate-950 flex items-center justify-center p-8">
+          <div className="bg-red-950/60 border border-red-500 rounded-xl p-6 max-w-lg w-full">
+            <h2 className="text-red-300 font-bold text-lg mb-3">⚠️ Consortium Builder Error</h2>
+            <pre className="text-red-200 text-xs whitespace-pre-wrap overflow-auto max-h-64">
+              {this.state.error.message}
+              {'\n\n'}
+              {this.state.error.stack?.slice(0, 600)}
+            </pre>
+            <button
+              onClick={() => this.setState({ error: null })}
+              className="mt-4 px-4 py-2 bg-red-700 hover:bg-red-600 text-white rounded-lg text-sm"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 import ReactFlow, {
   Background, Controls, useNodesState, useEdgesState,
   Node, ReactFlowProvider, BackgroundVariant,
@@ -304,7 +344,10 @@ const AppInner: React.FC = () => {
 
   return (
     <ReactFlowProvider>
-      {mode === 'program' ? <ProgramFlow /> : <ConsortiumFlow />}
+      {mode === 'program'
+        ? <ProgramFlow />
+        : <ErrorBoundary><ConsortiumFlow /></ErrorBoundary>
+      }
     </ReactFlowProvider>
   );
 };
