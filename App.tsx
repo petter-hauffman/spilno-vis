@@ -343,12 +343,9 @@ const AppInner: React.FC = () => {
   }
 
   return (
-    <ReactFlowProvider>
-      {mode === 'program'
-        ? <ProgramFlow />
-        : <ErrorBoundary><ConsortiumFlow /></ErrorBoundary>
-      }
-    </ReactFlowProvider>
+    mode === 'program'
+      ? <ReactFlowProvider><ProgramFlow /></ReactFlowProvider>
+      : <ReactFlowProvider><ErrorBoundary><ConsortiumFlow /></ErrorBoundary></ReactFlowProvider>
   );
 };
 
