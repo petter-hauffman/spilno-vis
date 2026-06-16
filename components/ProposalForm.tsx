@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { X, Plus, CheckCircle } from 'lucide-react';
-import { LangContext, AuthContext } from '../App';
+import { LangContext, AuthContext } from '../contexts';
 import { t } from '../i18n';
 import { addProposal } from '../services/consortiumService';
 import { PartnerCategory } from '../types';

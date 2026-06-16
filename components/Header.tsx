@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LangContext, AppModeContext } from '../App';
+import { LangContext, AppModeContext } from '../contexts';
 import LanguageToggle from './LanguageToggle';
 import { t } from '../i18n';
 import { AppMode } from '../types';

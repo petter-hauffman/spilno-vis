@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { X, Bot, Send, BookOpen, FileText, Link2 } from 'lucide-react';
 import { Node } from 'reactflow';
 import { SpilnoNodeData, NodeCategory, ChatMessage } from '../types';
-import { LangContext } from '../App';
+import { LangContext } from '../contexts';
 import { t } from '../i18n';
 import { sendMessageToGemini } from '../services/geminiService';
 

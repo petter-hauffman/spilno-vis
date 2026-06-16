@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { X, Mail, User, Building2, Send, CheckCircle, LogIn } from 'lucide-react';
-import { LangContext } from '../App';
+import { LangContext } from '../contexts';
 import { t } from '../i18n';
 import { isSupabaseConfigured } from '../services/supabase';
 import { signInWithMagicLink, saveGuestUser } from '../services/consortiumService';

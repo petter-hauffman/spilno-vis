@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { INITIAL_NODES } from '../constants';
 import { SpilnoNodeData, NodeCategory } from '../types';
-import { LangContext } from '../App';
+import { LangContext } from '../contexts';
 import { t } from '../i18n';
 import Header from './Header';
 

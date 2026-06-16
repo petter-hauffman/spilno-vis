@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { X, MessageSquare, Plus, RefreshCw, Activity } from 'lucide-react';
-import { LangContext } from '../App';
+import { LangContext } from '../contexts';
 import { t } from '../i18n';
 import { fetchActivity, subscribeActivity } from '../services/consortiumService';
 import { ActivityItem } from '../types';

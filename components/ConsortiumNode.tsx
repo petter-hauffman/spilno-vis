@@ -8,7 +8,7 @@ import {
   MessageSquare, CheckCircle, AlertTriangle,
 } from 'lucide-react';
 import { PartnerNodeData, PartnerCategory, PartnerStatus } from '../types';
-import { LangContext } from '../App';
+import { LangContext } from '../contexts';
 
 // ─── Icon map ────────────────────────────────────────────────────────────────
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {

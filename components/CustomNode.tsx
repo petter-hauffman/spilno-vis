@@ -11,7 +11,7 @@ import {
   CircleDollarSign, CheckCircle, AlertTriangle, Database,
 } from 'lucide-react';
 import { SpilnoNodeData, NodeCategory } from '../types';
-import { LangContext } from '../App';
+import { LangContext } from '../contexts';
 
 // ─── Icon map ────────────────────────────────────────────────────────────────
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {

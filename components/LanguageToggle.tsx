@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LangContext } from '../App';
+import { LangContext } from '../contexts';
 
 const LanguageToggle: React.FC = () => {
   const { lang, setLang } = useContext(LangContext);

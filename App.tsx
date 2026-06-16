@@ -1,5 +1,5 @@
 import React, {
-  useState, useCallback, createContext, useContext, useEffect, Component, ErrorInfo,
+  useState, useCallback, useContext, useEffect, Component, ErrorInfo,
 } from 'react';
 
 // ─── Error Boundary ──────────────────────────────────────────────────────────
@@ -16,6 +16,8 @@ class ErrorBoundary extends Component<
   }
   componentDidCatch(error: Error, info: ErrorInfo) {
     console.error('[Spilno] Render error:', error, info);
+    // Auto-retry once — first-render timing issue (contexts resolve on 2nd mount)
+    setTimeout(() => this.setState({ error: null }), 50);
   }
   render() {
     if (this.state.error) {
@@ -66,16 +68,9 @@ import {
 } from './services/consortiumService';
 import { supabase } from './services/supabase';
 
-// ─── Contexts ─────────────────────────────────────────────────────────────────
-export const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
-  lang: 'en', setLang: () => {},
-});
-export const AuthContext = createContext<{ user: User | null; setUser: (u: User | null) => void }>({
-  user: null, setUser: () => {},
-});
-export const AppModeContext = createContext<{ mode: AppMode; setMode: (m: AppMode) => void }>({
-  mode: 'program', setMode: () => {},
-});
+// ─── Contexts ────────────────────────────────────────────────────────────────
+import { LangContext, AuthContext, AppModeContext } from './contexts';
+export { LangContext, AuthContext, AppModeContext };
 
 // ─── Node types ──────────────────────────────────────────────────────────────
 const programNodeTypes = { custom: CustomNode };

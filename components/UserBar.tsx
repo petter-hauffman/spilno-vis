@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { LogOut, User as UserIcon, Shield, Eye } from 'lucide-react';
-import { LangContext, AuthContext } from '../App';
+import { LangContext, AuthContext } from '../contexts';
 import { t } from '../i18n';
 import { signOut } from '../services/consortiumService';
 

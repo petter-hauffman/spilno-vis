@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { X, Globe, Mail, Shield, MessageSquare, Send, Bot, ChevronDown, ExternalLink } from 'lucide-react';
 import { Node } from 'reactflow';
 import { PartnerNodeData, PartnerCategory, PartnerStatus, Comment, ChatMessage } from '../types';
-import { LangContext, AuthContext } from '../App';
+import { LangContext, AuthContext } from '../contexts';
 import { t } from '../i18n';
 import {
   fetchComments, addComment, deleteComment, subscribeComments
